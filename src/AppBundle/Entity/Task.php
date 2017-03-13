@@ -12,6 +12,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Task
 {
+
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(
+     *     targetEntity="AppBundle\Entity\Category",
+     *     inversedBy="tasks"
+     * )
+     */
+    private $category;
+
+
     /**
      * @var int
      *

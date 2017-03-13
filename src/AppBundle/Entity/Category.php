@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Category
@@ -12,6 +13,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Task",
+     *     mappedBy="category"
+     * )
+     */
+    private $tasks;
+
+
     /**
      * @var int
      *
@@ -27,6 +39,14 @@ class Category
      * @ORM\Column(name="name", type="string", length=70)
      */
     private $name;
+
+    /**
+     * Category constructor.
+     */
+    public function __construct()
+    {
+        $this->tasks = new ArrayCollection();
+    }
 
 
     /**
