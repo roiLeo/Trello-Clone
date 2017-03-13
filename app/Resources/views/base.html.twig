@@ -1,13 +1,74 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">            <link href="{{ asset('bundles/app/css/app.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('bundles/app/css/app.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">To-do list</a>
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="form-inline my-2 navbar-form navbar-right">
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="button" data-toggle="modal" data-target="#myModal">Add Task</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            {% block header %}
+                <h1>Bienvenue sur notre site internet!</h1>
+            {% endblock %}
+        </header>
+        <div class="row">
+                {% block content '' %}
+        </div>
+        <footer class="text-center">
+            {% block footer %}
+                © {{ "now"|date('Y') }} FAIT AVEC AMOUR ♥
+            {% endblock %}
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Task</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Description</label>
+                            <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Your task"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success" name="add">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        {% endblock %}
     </body>
 </html>
