@@ -22,7 +22,10 @@
             <div id="card{{ task.id }}" class="collapse" role="tabcard" aria-labelledby="cardid">
                 <div class="card-block">
                     <p class="card-text">{{ task.description }}</p>
-                    <a href="#" class="btn btn-danger">delete</a>
+                    <a href="#" class="btn btn-info">
+                        <i class="fa fa-pencil fa-fw"></i> Edit</a>
+                    <a class="btn btn-danger" href="#">
+                        <i class="fa fa-trash-o fa-lg"></i> Delete</a>
                 </div>
             </div>
             <div class="card-footer text-muted">
