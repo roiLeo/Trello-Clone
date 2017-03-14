@@ -36,4 +36,18 @@ class AppController extends Controller
         }
         return $this->render(':task:new.html.twig', ['form' => $form->createView() ]);
     }
+
+    /**
+     * @Route("/del", name="app_task_del", methods={"GET"})
+     * @param
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function delAction()
+    {
+        $taskManager = $this->container->get('app.task_manager');
+            $taskManager->del($task);
+            $this->addFlash('success','GG WP');
+            return $this->redirectToRoute('app_category_list',['id' => $task->getId()]);
+    }
+
 }
