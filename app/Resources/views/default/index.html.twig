@@ -9,19 +9,20 @@
     <div class="col-md-3">
         <h2>Cat. <span class="badge badge-pill badge-info">1</span></h2>
         <div class="card text-center">
-            <div class="card-header">
-                Name.<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            <div class="card-header" role="tab" id="cardid">
+                Name.<span class="pull-right clickable"><a data-toggle="collapse" data-parent="#faq" href="#answerOne" aria-expanded="false" aria-controls="answerOne"><i class="fa fa-chevron-up"></i></a></span>
             </div>
-            <div class="card-block">
-                <p class="card-text">Description.</p>
-                <a href="#" class="btn btn-danger">delete</a>
+            <div id="answerOne" class="collapse" role="tabcard" aria-labelledby="cardid">
+                <div class="card-block">
+                    <p class="card-text">Description.</p>
+                    <a href="#" class="btn btn-danger">delete</a>
+                </div>
             </div>
             <div class="card-footer text-muted">
                 CreatedAgo.
             </div>
         </div>
     </div>
-        No Tasks
 
 {% endblock %}
 
