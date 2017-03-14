@@ -6,24 +6,41 @@
 
 {% block content %}
 
-    <div class="col-md-3">
-        <h2>Cat. <span class="badge badge-pill badge-info">1</span></h2>
+    {% for cat in category %}
+    <div class="col-md-3 column">
+        <h3>{{ cat.name }} <span class="badge badge-pill badge-info">{{ cat.tasks |length }}</span></h3>
+
+        {% for task in cat.tasks %}
         <div class="card text-center">
             <div class="card-header" role="tab" id="cardid">
-                Name.<span class="pull-right clickable"><a data-toggle="collapse" data-parent="#faq" href="#answerOne" aria-expanded="false" aria-controls="answerOne"><i class="fa fa-chevron-up"></i></a></span>
+
+                {{ task.name }}.
+                <span class="pull-right clickable">
+                    <a data-toggle="collapse" data-parent="#faq" href="#answer{{ task.id }}" aria-expanded="false" aria-controls="test">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </span>
             </div>
-            <div id="answerOne" class="collapse" role="tabcard" aria-labelledby="cardid">
+            <div id="answer{{ task.id }}" class="collapse" role="tabcard" aria-labelledby="cardid">
                 <div class="card-block">
-                    <p class="card-text">Description.</p>
+                    <p class="card-text">{{ task.description }}</p>
                     <a href="#" class="btn btn-danger">delete</a>
                 </div>
             </div>
             <div class="card-footer text-muted">
-                CreatedAgo.
+                Created {{ task.createdAt|time_ago_in_words }}
             </div>
         </div>
-    </div>
+        {% else %}
+            No Task.
+        {% endfor %}
 
+
+
+    </div>
+    {% else %}
+        No Cat.
+{% endfor %}
 {% endblock %}
 
 {% block footer %}
