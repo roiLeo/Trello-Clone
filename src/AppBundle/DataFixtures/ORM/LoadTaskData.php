@@ -23,27 +23,32 @@ class LoadTaskData extends AbstractFixture implements OrderedFixtureInterface
             [
                 'name' => 'Custom storage',
                 'description' => 'Using a custom storage layerUsing a custom storage layer',
-                'status' => $this->getReference('cat-0'),
+                'category' => $this->getReference('cat-0'),
+                'status' => 'open',
             ],
             [
                 'name' => 'Hooking controllers',
                 'description' => 'Hooking into the controllers',
-                'status' => $this->getReference('cat-1'),
+                'category' => $this->getReference('cat-1'),
+                'status' => 'open',
             ],
             [
                 'name' =>  'Configuration',
                 'description' =>  'Advanced routing configuration',
-                'status' => $this->getReference('cat-2'),
+                'category' => $this->getReference('cat-2'),
+                'status' => 'open',
             ],
             [
                 'name' =>  'API',
                 'description' =>  'One API to rule all product data ',
-                'status' => $this->getReference('cat-3'),
+                'category' => $this->getReference('cat-3'),
+                'status' => 'open',
             ],
             [
                 'name' =>  'Symfony3',
                 'description' => 'Getting Pushy with Symfony3',
-                'status' => $this->getReference('cat-3'),
+                'category' => $this->getReference('cat-3'),
+                'status' => 'open',
             ],
         ];
 
@@ -53,6 +58,7 @@ class LoadTaskData extends AbstractFixture implements OrderedFixtureInterface
             $task = new Task();
             $task->setDescription($data['description']);
             $task->setName($data['name']);
+            $task->setCategory($data['category']);
             $task->setStatus($data['status']);
             $manager->persist($task);
         }

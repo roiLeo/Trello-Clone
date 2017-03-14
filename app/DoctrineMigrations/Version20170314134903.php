@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20170313141331 extends AbstractMigration
+class Version20170314134903 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,9 +18,7 @@ class Version20170313141331 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE task ADD category_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE task ADD CONSTRAINT FK_527EDB2512469DE2 FOREIGN KEY (category_id) REFERENCES category (id)');
-        $this->addSql('CREATE INDEX IDX_527EDB2512469DE2 ON task (category_id)');
+        $this->addSql('ALTER TABLE task ADD created_at DATETIME NOT NULL');
     }
 
     /**
@@ -31,8 +29,6 @@ class Version20170313141331 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE task DROP FOREIGN KEY FK_527EDB2512469DE2');
-        $this->addSql('DROP INDEX IDX_527EDB2512469DE2 ON task');
-        $this->addSql('ALTER TABLE task DROP category_id');
+        $this->addSql('ALTER TABLE task DROP created_at');
     }
 }
