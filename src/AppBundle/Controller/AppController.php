@@ -16,4 +16,9 @@ class AppController extends Controller
         $category = $this->container->get("app.category_manager");
         return $this->render(':default:index.html.twig', ['category' => $category->listCat()]);
     }
+
+    public function newAction()
+    {
+
+    }
 }
