@@ -1,3 +1,4 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 {% extends "::base.html.twig" %}
     {% block title 'ADD TASK' %}
 
@@ -5,37 +6,13 @@
     {% endblock %}
 
 {% block content %}
-    {% for cat in category %}
-    <div class="col-md-3 column">
-        <h3>{{ cat.name }} <span class="badge badge-pill badge-info">{{ cat.tasks |length }}</span></h3>
-        {% for task in cat.tasks %}
-        <div class="card text-center">
-            <div class="card-header" role="tab" id="cardid">
-
-                {{ task.name }}.
-                <span class="pull-right clickable">
-                    <a data-toggle="collapse" data-parent="#faq" href="#answer{{ task.id }}" aria-expanded="false" aria-controls="test">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                </span>
-            </div>
-            <div id="answer{{ task.id }}" class="collapse" role="tabcard" aria-labelledby="cardid">
-                <div class="card-block">
-                    <p class="card-text">{{ task.description }}</p>
-                    <a href="#" class="btn btn-danger">delete</a>
-                </div>
-            </div>
-            <div class="card-footer text-muted">
-                Created {{ task.createdAt|time_ago_in_words }}
-            </div>
-        </div>
-        {% else %}
-            No Task.
-        {% endfor %}
+    <div class="formAddTask text-center col align-self-center">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary btn-lg btn-block">SEND</button>
+        {{ form_end(form) }}
     </div>
-    {% else %}
-        No Cat.
-{% endfor %}
 {% endblock %}
 
 {% block footer %}
