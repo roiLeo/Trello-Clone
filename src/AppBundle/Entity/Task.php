@@ -14,6 +14,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Task
 {
 
+    const STATUS_OPEN = 'open';
+    const STATUS_CLOSED = 'closed';
+
+
     /**
      * @var Category
      *
