@@ -1,20 +1,16 @@
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
-{% extends "::base.html.twig" %}
-    {% block title 'ADD TASK' %}
+{% extends 'base.html.twig' %}
 
-    {% block header %}
-    {% endblock %}
+{% block body %}
+    <h1>Task creation</h1>
 
-{% block content %}
-    <div class="formAddTask text-center col align-self-center">
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
+    {{ form_start(form) }}
         {{ form_widget(form) }}
-        <button type="submit" class="btn btn-primary btn-lg btn-block">SEND</button>
-        {{ form_end(form) }}
-    </div>
-{% endblock %}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
 
-{% block footer %}
-    {{ parent() }}
+    <ul>
+        <li>
+            <a href="{{ path('task_index') }}">Back to the list</a>
+        </li>
+    </ul>
 {% endblock %}

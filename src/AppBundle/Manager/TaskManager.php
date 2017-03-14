@@ -53,10 +53,8 @@ class TaskManager
      */
     public function del(Task $task)
     {
-        if (null === $task->getId()){
-            $em = $this->em;
-            $em -> remove($task);
-        }
+        $em = $this->em;
+        $em -> remove($task);
         $this->em->flush();
     }
 }

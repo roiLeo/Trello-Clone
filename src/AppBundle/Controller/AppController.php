@@ -6,6 +6,7 @@ use AppBundle\Form\TaskType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Task;
 
 class AppController extends Controller
 {
@@ -38,16 +39,17 @@ class AppController extends Controller
     }
 
     /**
-     * @Route("/del", name="app_task_del", methods={"GET"})
+     * @Route("/del/{id}", name="app_task_del", methods={"GET"})
      * @param
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function delAction()
+    public function delAction(Task $task)
     {
         $taskManager = $this->container->get('app.task_manager');
-            $taskManager->del($task);
-            $this->addFlash('success','GG WP');
-            return $this->redirectToRoute('app_category_list',['id' => $task->getId()]);
+        $taskManager->del($task);
+        $this->addFlash('danger','GG WP');
+        return $this->redirectToRoute('app_category_list',['id' => $task->getId()]);
     }
+
 
 }
