@@ -1,7 +1,7 @@
 .clickable{
     cursor: pointer;
 }
-.column{
+.column h3{
     padding-top: 42px!important;
 }
 .column .card{
