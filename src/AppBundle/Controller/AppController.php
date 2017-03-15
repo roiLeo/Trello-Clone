@@ -32,24 +32,43 @@ class AppController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
             $taskManager->save($task);
-            $this->addFlash('success','GG WP');
+            $this->addFlash('success','New Task created');
             return $this->redirectToRoute('app_category_list',['id' => $task->getId()]);
         }
         return $this->render(':task:new.html.twig', ['form' => $form->createView() ]);
     }
 
+
     /**
      * @Route("/del/{id}", name="app_task_del", methods={"GET"})
-     * @param
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Task $task
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function delAction(Task $task)
     {
         $taskManager = $this->container->get('app.task_manager');
         $taskManager->del($task);
-        $this->addFlash('danger','GG WP');
+        $this->addFlash('danger','Task deleted');
         return $this->redirectToRoute('app_category_list',['id' => $task->getId()]);
     }
 
+    /**
+     * @Route("/edit/{id}", name="app_task_edit", methods={"GET"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function editAction(Request $request)
+    {
+        $taskManager = $this->container->get('app.task_manager');
+        $form = $this->createForm(TaskType::class,$taskManager->create());
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $task = $form->getData();
+            $taskManager->save($task);
+            $this->addFlash('success','Task edited');
+            return $this->redirectToRoute('app_category_list',['id' => $task->getId()]);
+        }
+        return $this->render(':task:edit.html.twig', ['form' => $form->createView() ]);
+    }
 
 }
