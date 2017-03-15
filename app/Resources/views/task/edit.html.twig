@@ -1,0 +1,28 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% extends "::base.html.twig" %}
+    {% block title 'EDIT TASK' %}
+
+    {% block header %}
+    {% endblock %}
+
+{% block content %}
+    <div class="formEditTask text-center col align-self-center">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_label(form.name, 'Name') }}
+        {{ form_widget(form.name, { 'attr': { 'value': task.name|trans} }) }}
+        {{ form_label(form.description, 'Description') }}
+        {{ form_widget(form.description, { 'attr': { 'value': task.description|trans} }) }}
+        {{ form_label(form.status, 'Status') }}
+        {{ form_widget(form.status, { 'attr': { 'value': task.status|trans} }) }}
+        {{ form_widget(form) }}
+        {{ form_rest(form) }}
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">SEND</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
