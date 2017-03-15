@@ -6,7 +6,7 @@
 
 {% block content %}
     {% for cat in category %}
-    <div class="col-md-3 column">
+    <div class="col-md-3 column text-center">
         <h3>{{ cat.name }} <span class="badge badge-pill badge-info">{{ cat.tasks |length }}</span></h3>
         {% for task in cat.tasks %}
         <div class="card text-center">

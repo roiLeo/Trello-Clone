@@ -6,25 +6,45 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">            <link href="{{ asset('bundles/app/css/app.css') }}" type="text/css" rel="stylesheet" />
             <link rel="stylesheet" href="{{ asset('bundles/app/font-awesome/css/font-awesome.min.css') }}">
-            <link href="{{ asset('bundles/app/css/app.css') }}" type="text/css" rel="stylesheet" />
+            <link rel="stylesheet" href="{{ asset('bundles/app/css/app.css') }}" type="text/css" />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
 
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ path('app_category_list') }}">To-do list</a>
-            </div>
-
-            <div id="navbar" class="navbar-collapse collapse">
-                <form class="form-inline my-2 navbar-form navbar-right">
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+            <div id="app" class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('app_category_list') }}">To-do list</a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
                     <a class="btn btn-outline-info my-2 my-sm-0" type="button" href="{{ path('app_task_new') }}">Add Task</a>
-                </form>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="btn btn-danger nav-link" href="{{ path('fos_user_security_logout') }}">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-info nav-link" href="{{ path('fos_user_security_login') }}">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary nav-link" href="{{ path('fos_user_registration_register') }}">
+                            <i class="fa fa-user-plus"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
             </div>
-        </div>
-    </nav>
+        </nav>
 
     {% if app.session.started and app.session.flashBag.peekAll is not empty %}
         <div class="messages">
@@ -46,10 +66,11 @@
     <div class="container">
         <header>
             {% block header %}
-                <h1>Bienvenue sur notre site internet!</h1>
+                <h1>Welcome !</h1>
             {% endblock %}
         </header>
         <div class="row">
+
                 {% block content '' %}
         </div>
         <footer class="text-center">
