@@ -53,22 +53,21 @@ class AppController extends Controller
     }
 
     /**
-     * @Route("/edit/{id}", name="app_task_edit", methods={"GET"})
+     * @Route("/edit/{id}", name="app_task_edit", methods={"GET","POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request)
+    public function editAction(Request $request, Task $task)
     {
         $taskManager = $this->container->get('app.task_manager');
-        $form = $this->createForm(TaskType::class,$taskManager->create());
+        $form = $this->createForm(TaskType::class,$task);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $task = $form->getData();
             $taskManager->save($task);
-            $this->addFlash('success','Task edited');
+            $this->addFlash('info','Task edited');
             return $this->redirectToRoute('app_category_list',['id' => $task->getId()]);
         }
-        return $this->render(':task:edit.html.twig', ['form' => $form->createView() ]);
+        return $this->render(':task:edit.html.twig', ['form' => $form->createView(), 'task' => $task  ]);
     }
 
 }

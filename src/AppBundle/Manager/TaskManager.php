@@ -57,16 +57,4 @@ class TaskManager
         $em -> remove($task);
         $this->em->flush();
     }
-
-    /**
-     * @param Task $task
-     */
-    public function edit(Task $task)
-    {
-        if (null === $task->getId()){
-            $em = $this->em;
-            $em -> persist($task);
-        }
-        $this->em->flush();
-    }
 }
